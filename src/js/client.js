@@ -1,14 +1,15 @@
+import "babel-polyfill";
 import React from "react";
-import ReactDOM from "react-dom";
+import { render } from "react-dom";
+import { Provider } from "react-redux";
+import App from "./containers/app";
+import configureStore from "./store/configureStore";
 
-class Layout extends React.Component {
-  render() {
-    return (
-//      <h1>Welcome!</h1>
-      <h1>It works!</h1>
-    );
-  }
-}
+const store = configureStore();
 
-const app = document.getElementById('app');
-ReactDOM.render(<Layout/>, app);
+render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    document.getElementById('app'),
+);
